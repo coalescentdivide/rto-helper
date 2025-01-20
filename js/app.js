@@ -70,7 +70,7 @@ document.getElementById("calculate").addEventListener("click", function () {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
       navigator.serviceWorker
-          .register('./service-worker.js') // Register the service worker located in the root directory
+          .register('./sw.js') // Register the service worker located in the root directory
           .then(function (registration) {
               console.log('Service Worker registered with scope:', registration.scope);
           })
