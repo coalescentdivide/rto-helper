@@ -1,15 +1,15 @@
 {
-  "name": "Github Page PWA",
-  "short_name": "GPPWA",
-  "description": "Github Page as a Progressive Web App",
-  "scope": "/github-page-pwa/",
-  "start_url": "/github-page-pwa/",
+  "name": "RTO-Helper",
+  "short_name": "RTOCALC",
+  "description": "RTO Credit Calculator",
+  "scope": "/rto-helper/",
+  "start_url": "/rto-helper/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "display": "standalone", 
   "icons": [
       {
-        "src": "/github-page-pwa/img/icon.png",
+        "src": "/rto-helper/img/icon.png",
         "type": "image/png",
         "sizes": "700x700"
       }
