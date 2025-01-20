@@ -8,53 +8,54 @@ body {
 }
 
 .calculator {
-  /* Add maximum width for desktop and center it horizontally */
-  width: 90%;            /* Default for smaller screens */
-  max-width: 800px;      /* Limit the width for desktop */
+  width: 90%;                /* Dynamically responsive width for mobile-first */
+  max-width: 800px;          /* Limit width for larger screens */
   background: #fff;
-  margin: 30px auto;     /* Center the calculator on the page */
+  margin: 30px auto;         /* Center the calculator on the page */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Center-align all calculator contents */
+  text-align: center;        /* Center-align contents */
 }
 
 .calculator h1 {
   font-size: 1.8em;
-  margin: 10px 0 20px; /* Adjust spacing to avoid overlap with the icon */
+  margin-bottom: 20px;       /* Add spacing beneath the title */
   text-align: center;
   color: #333;
 }
 
 .form-group-container {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping for input fields */
-  gap: 15px;       /* Spacing between input fields */
-  justify-content: space-between; /* Spread out input fields */
+  flex-wrap: wrap;           /* Wrap fields if needed */
+  gap: 15px;                 /* Space between inputs */
+  justify-content: center;   /* Center the input fields together */
 }
 
 .form-group {
-  flex: 1 1 calc(50% - 15px); /* Each input takes up 50% space minus the gap */
-  min-width: 45%;  /* Minimum width constraint for flexibility */
+  flex: 1 1 100%;            /* Make each form group take full width for mobile */
+  max-width: 100%;           /* Ensure no overlap on small screens */
 }
 
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  font-size: 1rem;           /* Slightly larger labels */
+  color: #555;               /* Softer label color */
+  text-align: left;          /* Stay aligned left */
 }
 
 .form-group input {
-  width: 100%; /* Make input fields responsive */
+  width: 100%;               /* Input fields fill container */
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;    /* Include padding in width calculation */
 }
 
 button {
-  width: 50%; /* Button takes up half the width on larger screens */
-  max-width: 300px; /* Limit max width for large screens */
-  margin: 20px auto; /* Align the button centrally */
+  width: 100%;               /* Button takes full width on mobile */
   padding: 12px 0;
   font-size: 1rem;
   border: none;
@@ -65,13 +66,14 @@ button {
   text-transform: uppercase;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  margin-top: 15px;          /* Add extra spacing above button */
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
-/* Output Section for Results */
+/* Output Section */
 .output {
   margin-top: 20px;
   padding: 15px;
@@ -80,62 +82,53 @@ button:hover {
   border-radius: 4px;
   font-size: 1.1rem;
   text-align: center;
-  word-wrap: break-word; /* Allow long content to break into multiple lines */
+  word-wrap: break-word;     /* Break long text properly */
 }
 
-/* === Center the Icon (Global Styles) === */
+/* Center the icon in the header */
 .icon-container {
-  display: flex; /* Enable Flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  height: auto; /* Remove fixed height */
-  margin-bottom: 10px; /* Add some space beneath the icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;       /* Add space beneath the icon */
 }
 
 img {
-  max-width: 80px; /* Restrict icon size */
-  height: auto;    /* Maintain aspect ratio */
+  max-width: 80px;           /* Restrict size for mobile */
+  height: auto;
 }
 
-/* Footer Style */
+/* Footer Section */
 footer {
-  margin-top: 30px; /* Space between the footer and the rest of the page */
+  margin-top: 30px;
   text-align: center;
   font-size: 0.9em;
   color: #666;
-  background-color: #f4f4f4; /* Match the body's background color */
-  padding: 10px 0; /* Footer padding */
-  border-top: 1px solid #ddd; /* Subtle border to distinguish footer */
+  background-color: #f4f4f4;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
 }
 
-/* Mobile-First Design (Default Vertical Layout) */
+/* === MOBILE-FIRST APPROACH: Default Vertical Layout === */
 .calculator .form-group {
-  display: block; /* Stack inputs vertically */
-  text-align: left; /* Align labels and inputs to the left */
+  text-align: left;          /* Align labels left for readability */
 }
 
-/* === Desktop Layout Adjustments (Using Media Queries) === */
+/* === DESKTOP LAYOUT: Adjustments for Larger Screens === */
 @media screen and (min-width: 768px) {
-  .calculator {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Add space between sections on desktop */
-    max-width: 700px; /* Keep it wider on desktops */
-    align-items: center;
+  .form-group-container {
+    display: grid;           /* Grid layout for larger screens */
+    grid-template-columns: repeat(2, 1fr); /* Two input columns */
+    gap: 15px;
   }
 
-  /* Place input fields and buttons in a grid layout */
-  .form-group-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns for inputs */
-    gap: 15px; /* Space between input fields */
+  .form-group {
+    flex: none;               /* Standardize input size */
+    max-width: unset;
   }
 
   button {
-    width: auto; /* Resize calculate button */
-  }
-
-  .output {
-    margin-top: 0;
+    width: auto;             /* Adjust button size on larger screens */
+    max-width: 300px;        /* Limit size for readability */
   }
 }
