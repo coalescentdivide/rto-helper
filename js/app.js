@@ -71,28 +71,15 @@ document.getElementById("calculate").addEventListener("click", function () {
   `;
 });
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").then((registration) => {
-      console.log("Service Worker registered with scope:", registration.scope);
-
-      // Listen for updates to the service worker
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === "installed") {
-            if (navigator.serviceWorker.controller) {
-              // New content is available; Notify the user (optional)
-              console.log("New content is available; please refresh.");
-            } else {
-              // Content is cached for offline use
-              console.log("Content is cached for offline use.");
-            }
-          }
-        };
-      };
-    });
-  });
-}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+      navigator.serviceWorker
+          .register('./sw.js') // Register the service worker located in the root directory
+          .then(function (registration) {
+              console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(function (error) {
+              console.error('Service Worker registration failed:', error);
+          });
   });
 }
