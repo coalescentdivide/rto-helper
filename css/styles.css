@@ -81,7 +81,7 @@ button:hover {
   .calculator {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center; /* Center vertically */
     gap: 20px; /* Add space between sections on desktop */
     max-width: 700px; /* Keep it wider on desktops */
     align-items: stretch;
