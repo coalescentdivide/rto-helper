@@ -55,8 +55,10 @@ document.getElementById("calculate").addEventListener("click", function () {
 
   // Update the results in the interface
   document.getElementById("result").innerHTML = `
+    <p>Cards Needed for Today's Close: <strong>${cardsForClose > 0 ? cardsForClose : 0}</strong></p>
     <p>You have <strong>${cardsForClose > 0 ? cardsForClose : 0}</strong> cards remaining to hit today's goal of <strong>${closeGoal}%</strong>.</p>
     
+    <p>Cards Needed for Tomorrow's Open Goal: <strong>${cardsForOpen > 0 ? cardsForOpen : 0}</strong></p>
     <p>You have <strong>${cardsForOpen > 0 ? cardsForOpen : 0}</strong> cards remaining to hit tomorrow's open goal of <strong>${openGoal}%</strong>.</p>
     
     <p>Roll: <strong>${rollPercentage.toFixed(2)}%</strong> 
