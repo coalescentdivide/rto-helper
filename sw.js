@@ -1,48 +1,52 @@
-// Version your cache
-const CACHE_NAME = "rto-helper-v1.0.1"; // Increment this when making updates
+var GHPATH = '/github-page-pwa';
+var APP_PREFIX = 'gppwa_';
+var VERSION = 'version_002';
+var URLS = [    
+  `${GHPATH}/`,
+  `${GHPATH}/index.html`,
+  `${GHPATH}/css/styles.css`,
+  `${GHPATH}/img/icon.png`,
+  `${GHPATH}/js/app.js`
+]
 
-const urlsToCache = [
-  "/rto-helper/",                // Root
-  "/rto-helper/index.html",      // Main HTML file
-  "/rto-helper/css/styles.css",  // Styles
-  "/rto-helper/js/app.js",       // JavaScript
-  "/rto-helper/images/icon.png"  // Icon
-];
-
-// Install event - Cache files
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log("Opened cache:", CACHE_NAME);
-      return cache.addAll(urlsToCache);
-    })
-  );
-});
-
-// Activate event - Clear old cache
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            console.log("Deleting old cache:", cache);
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
-  );
-});
-
-// Fetch event - Load from cache or network
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response) {
-        return response; // Return cached file
+var CACHE_NAME = APP_PREFIX + VERSION
+self.addEventListener('fetch', function (e) {
+  console.log('Fetch request : ' + e.request.url);
+  e.respondWith(
+    caches.match(e.request).then(function (request) {
+      if (request) { 
+        console.log('Responding with cache : ' + e.request.url);
+        return request
+      } else {       
+        console.log('File is not cached, fetching : ' + e.request.url);
+        return fetch(e.request)
       }
-      return fetch(event.request); // Otherwise, fetch from network
     })
-  );
-});
+  )
+})
+
+self.addEventListener('install', function (e) {
+  e.waitUntil(
+    caches.open(CACHE_NAME).then(function (cache) {
+      console.log('Installing cache : ' + CACHE_NAME);
+      return cache.addAll(URLS)
+    })
+  )
+})
+
+self.addEventListener('activate', function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keyList) {
+      var cacheWhitelist = keyList.filter(function (key) {
+        return key.indexOf(APP_PREFIX)
+      })
+      cacheWhitelist.push(CACHE_NAME);
+      return Promise.all(keyList.map(function (key, i) {
+        if (cacheWhitelist.indexOf(key) === -1) {
+          console.log('Deleting cache : ' + keyList[i] );
+          return caches.delete(keyList[i])
+        }
+      }))
+    })
+  )
+})
