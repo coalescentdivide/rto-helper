@@ -12,8 +12,6 @@ body {
   width: 90%;            /* Default for smaller screens */
   max-width: 800px;      /* Limit the width for desktop */
   background: #fff;
-  align-items: center;
-  justify-content: center;
   margin: 30px auto;     /* Center the calculator on page */
   padding: 20px;
   border-radius: 8px;
@@ -83,8 +81,6 @@ button:hover {
   .calculator {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 20px; /* Add space between sections on desktop */
     max-width: 700px; /* Keep it wider on desktops */
     align-items: stretch;
@@ -104,4 +100,16 @@ button:hover {
   .output {
     margin-top: 0;
   }
+
+.icon-container {
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100px; /* Set a fixed height for the container (example) */
+}
+
+img {
+  max-width: 100%; /* Ensure the image scales properly */
+  height: auto; /* Maintain aspect ratio */
+}
 }
