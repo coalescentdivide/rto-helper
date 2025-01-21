@@ -1,52 +1,61 @@
-var GHPATH = '/rto-helper';
+var isGithubPages = location.hostname === "coalescentdivide.github.io";
+var GHPATH = isGithubPages ? '/rto-helper' : '';
 var APP_PREFIX = 'RTOCALC';
-var VERSION = 'version_004';
-var URLS = [    
+var VERSION = 'version_006';
+var CACHE_NAME = APP_PREFIX + VERSION;
+
+// Update URLS to use GHPATH dynamically
+var URLS = [
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
   `${GHPATH}/css/styles.css`,
-  `${GHPATH}/img/icon.png`,
+  `${GHPATH}/images/icon.png`,
   `${GHPATH}/js/app.js`
-]
+];
 
-var CACHE_NAME = APP_PREFIX + VERSION
-self.addEventListener('fetch', function (e) {
-  console.log('Fetch request : ' + e.request.url);
-  e.respondWith(
-    caches.match(e.request).then(function (request) {
-      if (request) { 
-        console.log('Responding with cache : ' + e.request.url);
-        return request
-      } else {       
-        console.log('File is not cached, fetching : ' + e.request.url);
-        return fetch(e.request)
-      }
-    })
-  )
-})
-
+// Install Event: Cache files and force immediate activation
 self.addEventListener('install', function (e) {
+  console.log('Installing service worker...');
+  
+  // Force this service worker to immediately take control
+  self.skipWaiting();
+
   e.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      console.log('Installing cache : ' + CACHE_NAME);
-      return cache.addAll(URLS)
+      console.log('Caching files:', URLS);
+      return cache.addAll(URLS);
     })
-  )
-})
+  );
+});
 
+// Activate Event: Remove old caches and take control of clients
 self.addEventListener('activate', function (e) {
+  console.log('Activating service worker...');
+  
   e.waitUntil(
     caches.keys().then(function (keyList) {
-      var cacheWhitelist = keyList.filter(function (key) {
-        return key.indexOf(APP_PREFIX)
-      })
-      cacheWhitelist.push(CACHE_NAME);
-      return Promise.all(keyList.map(function (key, i) {
-        if (cacheWhitelist.indexOf(key) === -1) {
-          console.log('Deleting cache : ' + keyList[i] );
-          return caches.delete(keyList[i])
-        }
-      }))
+      return Promise.all(
+        keyList.map(function (key) {
+          if (key !== CACHE_NAME) {
+            console.log('Deleting old cache:', key);
+            return caches.delete(key);
+          }
+        })
+      );
     })
-  )
-})
+  );
+
+  // Immediately take control of all open pages
+  self.clients.claim();
+});
+
+// Fetch Event: Serve files from cache, then fallback to network
+self.addEventListener('fetch', function (e) {
+  console.log('Fetching request:', e.request.url);
+  
+  e.respondWith(
+    caches.match(e.request).then(function (response) {
+      return response || fetch(e.request);
+    })
+  );
+});

@@ -3,49 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rent-to-Own Calculator</title>
-  <link rel="stylesheet" href="/rto-helper/css/styles.css">
+  <title>Rent-to-Own Helper</title>
+  <link rel="stylesheet" href="./css/styles.css?ver=1.05">
 </head>
 <body>
-  <div class="calculator">
-    <div class="icon-container">
-      <img src="/rto-helper/images/icon.png" alt="Extension Icon">
-    </div>
-
-    <h1>RAC Helper</h1>
-
-    <!-- Input Section -->
-    <div class="form-group-container">
-      <div class="form-group">
-        <label for="aor">Current AOR</label>
-        <input type="number" id="aor" placeholder="Enter AOR (Accounts on Rent)">
-      </div>
-
-      <div class="form-group">
-        <label for="pastDue">Current Past Due (%)</label>
-        <input type="number" id="pastDue" placeholder="Enter Past Due %">
-      </div>
-
-      <div class="form-group">
-        <label for="nowDue">Current Now Due (%) (Optional)</label>
-        <input type="number" id="nowDue" placeholder="Enter Now Due %">
-      </div>
-    </div>
-
-    <!-- Button -->
-    <button id="calculate">Calculate</button>
-
-    <!-- Output Section -->
-    <div class="output" id="result">
-      <!-- Results will be displayed here -->
-    </div>
+  <!-- Tab Navigation -->
+  <div class="tab-container">
+    <button class="tab active" data-tab="daily-goals">Daily Goals Calculator</button>
+    <button class="tab" data-tab="cost-calculator">Cost Calculator</button>
   </div>
 
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <!-- Daily Goals Calculator -->
+    <div id="daily-goals" class="tab-pane active">
+      <div class="calculator">
+        <div class="icon-container">
+          <img src="./images/icon.png" alt="Extension Icon">
+        </div>
+
+        <h1>Credit Helper</h1>
+
+        <!-- Input Section -->
+        <div class="form-group-container">
+          <div class="form-group">
+            <label for="aor">Current AOR</label>
+            <input type="number" id="aor" placeholder="Enter AOR (Accounts on Rent)">
+          </div>
+
+          <div class="form-group">
+            <label for="pastDue">Current Past Due (%)</label>
+            <input type="number" id="pastDue" placeholder="Enter Past Due %">
+          </div>
+
+          <div class="form-group">
+            <label for="nowDue">Current Now Due (%) (Optional)</label>
+            <input type="number" id="nowDue" placeholder="Enter Now Due %">
+          </div>
+        </div>
+
+        <!-- Button -->
+        <button id="calculate">Calculate</button>
+
+        <!-- Output Section -->
+        <div class="output" id="result">
+          <!-- Results will be displayed here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Cost Calculator -->
+    <div id="cost-calculator" class="tab-pane">
+      <div class="calculator">
+        <h1>Cost Calculator</h1>
+
+        <!-- Input Section -->
+        <div class="form-group">
+          <label for="price">Enter Item Price ($):</label>
+          <input type="number" id="price" placeholder="Enter Price">
+        </div>
+
+        <!-- Club Toggle -->
+        <div class="form-group club-toggle">
+          <label for="club-toggle">
+            <input type="checkbox" id="club-toggle"> Include BP?
+          </label>
+        </div>
+
+        <!-- Button -->
+        <button id="calculate-cost">Calculate Total Cost</button>
+
+        <!-- Output Section -->
+        <div class="output" id="cost-result">
+          <!-- Results will be displayed here -->
+        </div>
+      </div>
+    </div>
   <!-- Footer -->
   <footer>
     Designed by Will B
   </footer>
 
-  <script src="/rto-helper/js/app.js"></script>
+  <script src="./js/app.js?ver=1.06"></script>
 </body>
 </html>
