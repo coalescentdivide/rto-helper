@@ -1,6 +1,6 @@
-var GHPATH = '/github-page-pwa';
-var APP_PREFIX = 'gppwa_';
-var VERSION = 'version_003';
+var GHPATH = '/rto-helper';
+var APP_PREFIX = 'RTOCALC';
+var VERSION = 'version_004';
 var URLS = [    
   `${GHPATH}/`,
   `${GHPATH}/index.html`,
