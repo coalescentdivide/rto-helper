@@ -57,7 +57,7 @@ document.getElementById("calculate").addEventListener("click", function () {
     <p>10% of the current AOR of <strong>${aor}</strong> is <strong>${maxRollCards}</strong> cards.</p>
     <p>${rollDifference > 0 
       ? `<strong>${rollDifference}</strong> cards are needed to have the roll be under 10%!` 
-      : `You are within the allowable roll percentage!`
+      : ``
     }</p>
   `;
 });
