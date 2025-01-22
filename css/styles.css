@@ -94,7 +94,7 @@ button:hover {
 }
 
 img {
-  max-width: 80px;           /* Restrict size for mobile */
+  max-width: 200px;           /* Restrict size for mobile */
   height: auto;
 }
 
