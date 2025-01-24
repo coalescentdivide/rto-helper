@@ -3,7 +3,7 @@ console.log('I am running!');
 // Constants for daily goals (Close and Open for each day)
 const dailyGoals = {
   close: [16.9, 15.9, 13.9, 11.9, 8.9, 6.9],
-  open: [21.9, 18.9, 16.9, 14.9, 11.9]
+  open: [21.9, 18.9, 16.9, 14.9, 11.9, 8.9]
 };
 
 // === Tab Switching Logic ===
