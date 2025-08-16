@@ -51,14 +51,8 @@ document.getElementById("calculate").addEventListener("click", function () {
 
   document.getElementById("result").innerHTML = `
     <p>You have <strong>${cardsForClose > 0 ? cardsForClose : 0}</strong> cards remaining to hit today's goal of <strong>${closeGoal}%</strong>.</p>
-    <p>You have <strong>${cardsForOpen > 0 ? cardsForOpen : 0}</strong> cards remaining to hit tomorrow's open goal of <strong>${openGoal}%</strong>.</p>
-    <p>Roll: <strong>${rollPercentage.toFixed(2)}%</strong> 
-       (<strong>${cardsForRoll}</strong> cards)</p>
-    <p>10% of the current AOR of <strong>${aor}</strong> is <strong>${maxRollCards}</strong> cards.</p>
-    <p>${rollDifference > 0 
-      ? `<strong>${rollDifference}</strong> cards are needed to have the roll be under 10%!` 
-      : ``
-    }</p>
+    <p>You have <strong>${cardsForOpen > 0 ? cardsForOpen : 0}</strong> cards remaining to hit the open goal of <strong>${openGoal}%</strong>.</p>
+    <p>You have <strong>${rollDifference}</strong> cards remaining to be under 10% Roll<strong>${openGoal}%</strong>.</p>
   `;
 });
 
