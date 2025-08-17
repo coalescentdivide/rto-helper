@@ -1,7 +1,7 @@
 var isGithubPages = location.hostname === "coalescentdivide.github.io";
 var GHPATH = isGithubPages ? '/rto-helper' : '';
 var APP_PREFIX = 'RTOCALC';
-var VERSION = 'version_008';
+var VERSION = 'version_009';
 var CACHE_NAME = APP_PREFIX + VERSION;
 
 // Update URLS to use GHPATH dynamically
