@@ -52,7 +52,7 @@ document.getElementById("calculate").addEventListener("click", function () {
   document.getElementById("result").innerHTML = `
     <p>You have <strong>${cardsForClose > 0 ? cardsForClose : 0}</strong> cards remaining to hit today's goal of <strong>${closeGoal}%</strong>.</p>
     <p>You have <strong>${cardsForOpen > 0 ? cardsForOpen : 0}</strong> cards remaining to hit the open goal of <strong>${openGoal}%</strong>.</p>
-    <p>You have <strong>${rollDifference}</strong> cards remaining to be under 10% Roll<strong>${openGoal}%</strong>.</p>
+    <p>You have <strong>${rollDifference}</strong> cards remaining to be under 10% Roll.</p>
   `;
 });
 
